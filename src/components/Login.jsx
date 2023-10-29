@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../apiHelpers/auth";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const navigate = useNavigate();
 
     const emailChangeHandler = (e) => {
         setEmail(e.target.value);
@@ -16,7 +18,24 @@ const Login = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        loginUser(email, password);
+        loginUser(email, password).then((res) => {
+            if (res) {
+                if (res.status === 200) {
+                    console.log("Login successfull");
+                    navigate("/");
+                } else {
+                    res.json()
+                        .then((parsedData) => {
+                            console.log(parsedData.message);
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
+                }
+            } else {
+                console.log("Login failed");
+            }
+        });
     };
 
     return (
