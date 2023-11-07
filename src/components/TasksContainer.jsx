@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { createTask, getAllTasks } from "../apiHelpers/task";
 import Navbar from "./Navbar";
 
-const TasksContainer = () => {
+const TasksContainer = (props) => {
     const [tasks, setTasks] = useState([]);
     const [taskName, setTaskName] = useState("");
     const navigate = useNavigate();
@@ -50,6 +50,8 @@ const TasksContainer = () => {
                     res.json()
                         .then((parsedData) => {
                             console.log(parsedData.message);
+                            props.setToastMessage(parsedData.message);
+                            props.showToast();
                         })
                         .catch((err) => {
                             console.log(err);
@@ -83,7 +85,7 @@ const TasksContainer = () => {
                 </form>
                 <ul className="list-group">
                     {tasks.map((task, index) => {
-                        return <Task key={index} {...task} getAllTasksHelper={getAllTasksHelper}></Task>;
+                        return <Task key={index} {...task} getAllTasksHelper={getAllTasksHelper} {...props}></Task>;
                     })}
                 </ul>
             </div>

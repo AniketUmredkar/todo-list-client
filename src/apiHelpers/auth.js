@@ -10,10 +10,11 @@ export const loginUser = async (email, password) => {
     }
 };
 
-export const createUser = async (firstName, lastName, email, password) => {
+export const createUser = async (firstName, lastName, email, password, confirmPassword) => {
     const fd = new FormData();
     fd.append("email", email);
     fd.append("password", password);
+    fd.append("confirm_password", confirmPassword);
     fd.append("first_name", firstName);
     fd.append("last_name", lastName);
     try {

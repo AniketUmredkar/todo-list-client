@@ -14,6 +14,8 @@ const Task = (props) => {
                     res.json()
                         .then((parsedData) => {
                             console.log(parsedData.message);
+                            props.setToastMessage(parsedData.message);
+                            props.showToast();
                         })
                         .catch((err) => {
                             console.log(err);
@@ -33,6 +35,8 @@ const Task = (props) => {
                     res.json()
                         .then((parsedData) => {
                             console.log(parsedData.message);
+                            props.setToastMessage(parsedData.message);
+                            props.showToast();
                         })
                         .catch((err) => {
                             console.log(err);
@@ -52,6 +56,8 @@ const Task = (props) => {
                     res.json()
                         .then((parsedData) => {
                             console.log(parsedData.message);
+                            props.setToastMessage(parsedData.message);
+                            props.showToast();
                         })
                         .catch((err) => {
                             console.log(err);
@@ -73,6 +79,8 @@ const Task = (props) => {
                     res.json()
                         .then((parsedData) => {
                             console.log(parsedData.message);
+                            props.setToastMessage(parsedData.message);
+                            props.showToast();
                         })
                         .catch((err) => {
                             console.log(err);

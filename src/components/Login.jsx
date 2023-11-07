@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../apiHelpers/auth";
 
-const Login = () => {
+const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -27,6 +27,8 @@ const Login = () => {
                     res.json()
                         .then((parsedData) => {
                             console.log(parsedData.message);
+                            props.setToastMessage(parsedData.message);
+                            props.showToast();
                         })
                         .catch((err) => {
                             console.log(err);
