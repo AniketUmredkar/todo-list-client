@@ -1,13 +1,28 @@
-.App{
-  padding: 20px;
+.App {
+    padding: 20px;
 }
 
-.login-form-container{
-  width: 50%;
-  max-width: 500px;
-  margin: auto;
+.login-form-container {
+    width: 50%;
+    max-width: 500px;
+    margin: auto;
 }
 
-.login-form{
+.tasks-container {
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
+}
+
+.login-form {
+    width: 100%;
+}
+
+.nav-button {
+    border: none;
+    background: none;
+}
+
+.edit-form{
   width: 100%;
 }

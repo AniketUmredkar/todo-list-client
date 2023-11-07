@@ -49,7 +49,6 @@ const Login = () => {
                         type="email"
                         className="form-control"
                         id="inputEmail"
-                        aria-describedby="emailHelp"
                         value={email}
                         onChange={emailChangeHandler}
                     />
@@ -68,7 +67,7 @@ const Login = () => {
                 </div>
                 <div className="d-flex flex-row justify-content-between align-items-center pt-4">
                     <button className="btn btn-primary" onClick={submitHandler}>
-                        Submit
+                        Login
                     </button>
                     <Link to={"/sign-up"} className="primary-link">
                         Sign up

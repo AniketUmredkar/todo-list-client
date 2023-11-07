@@ -3,7 +3,7 @@ import "./App.css";
 import TasksContainer from "./components/TasksContainer";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
     return (
