@@ -1,28 +1,28 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { loginUser } from "../apiHelpers/auth";
+import { forgotPassword } from "../apiHelpers/auth";
+import { Link } from "react-router-dom";
 
-const Login = (props) => {
+const ForgotPassword = (props) => {
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
-    const navigate = useNavigate();
 
     const emailChangeHandler = (e) => {
         setEmail(e.target.value);
     };
 
-    const passwordChangeHandler = (e) => {
-        setPassword(e.target.value);
-    };
-
     const submitHandler = (e) => {
         e.preventDefault();
-        loginUser(email, password).then((res) => {
+        forgotPassword(email).then((res) => {
             if (res) {
                 if (res.status === 200) {
-                    console.log("Login successfull");
-                    navigate("/");
+                    res.json()
+                        .then((parsedData) => {
+                            console.log(parsedData.message);
+                            props.setToastMessage(parsedData.message);
+                            props.showToast();
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
                 } else {
                     res.json()
                         .then((parsedData) => {
@@ -39,7 +39,6 @@ const Login = (props) => {
             }
         });
     };
-
     return (
         <div className="d-flex flex-row justify-content-center align-items-center pt-5 login-form-container">
             <form className="login-form">
@@ -55,29 +54,12 @@ const Login = (props) => {
                         onChange={emailChangeHandler}
                     />
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="inputPassword" className="form-label">
-                        Password
-                    </label>
-                    <input
-                        type="password"
-                        className="form-control"
-                        id="inputPassword"
-                        value={password}
-                        onChange={passwordChangeHandler}
-                    />
-                </div>
                 <div className="d-flex flex-row justify-content-between align-items-center pt-4">
-                    <div className="d-flex flex-column">
-                        <button className="btn btn-primary" onClick={submitHandler}>
-                            Login
-                        </button>
-                        <Link to={"/forgot-password"} className="primary-link mt-3">
-                            Forgot password?
-                        </Link>
-                    </div>
-                    <Link to={"/sign-up"} className="primary-link align-self-start">
-                        Sign up
+                    <button className="btn btn-primary" onClick={submitHandler}>
+                        Submit
+                    </button>
+                    <Link to={"/login"} className="primary-link">
+                        Back to login
                     </Link>
                 </div>
             </form>
@@ -85,4 +67,4 @@ const Login = (props) => {
     );
 };
 
-export default Login;
+export default ForgotPassword;

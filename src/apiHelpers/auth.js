@@ -33,3 +33,35 @@ export const logOutUser = async () => {
         return false;
     }
 };
+
+export const forgotPassword = async (email) => {
+    const fd = new FormData();
+    fd.append("email", email);
+    try {
+        return await fetch("http://localhost:8080/auth/forgot-password", {
+            method: "POST",
+            body: fd,
+            credentials: "include",
+        });
+    } catch (e) {
+        console.log(e);
+        return false;
+    }
+};
+
+export const resetPassword = async (password, confirmPassword, resetToken) => {
+    const fd = new FormData();
+    fd.append("password", password);
+    fd.append("confirm_password", confirmPassword);
+    fd.append("reset_token", resetToken);
+    try {
+        return await fetch("http://localhost:8080/auth/reset-password", {
+            method: "POST",
+            body: fd,
+            credentials: "include",
+        });
+    } catch (e) {
+        console.log(e);
+        return false;
+    }
+};

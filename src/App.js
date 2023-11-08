@@ -5,6 +5,8 @@ import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
+import ResetPassword from "./components/ResetPassword";
+import ForgotPassword from "./components/ForgotPassword";
 
 function App() {
     const [showToast, setShowToast] = useState(false);
@@ -41,6 +43,24 @@ function App() {
                     <Route
                         path="/login"
                         element={<Login showToast={showToastHelper} setToastMessage={setToastMessage}></Login>}
+                    ></Route>
+                    <Route
+                        path="/forgot-password"
+                        element={
+                            <ForgotPassword
+                                showToast={showToastHelper}
+                                setToastMessage={setToastMessage}
+                            ></ForgotPassword>
+                        }
+                    ></Route>
+                    <Route
+                        path="/reset-password/:token"
+                        element={
+                            <ResetPassword
+                                showToast={showToastHelper}
+                                setToastMessage={setToastMessage}
+                            ></ResetPassword>
+                        }
                     ></Route>
                 </Routes>
             </BrowserRouter>
