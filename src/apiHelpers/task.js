@@ -1,6 +1,8 @@
+import { getHeaders } from "../utils/helpers";
+
 export const getAllTasks = async () => {
     try {
-        const res = await fetch("http://localhost:8080/task", { credentials: "include" });
+        const res = await fetch("http://localhost:8080/task", { headers: getHeaders() });
         return res;
     } catch (e) {
         console.log(e);
@@ -9,13 +11,13 @@ export const getAllTasks = async () => {
 };
 
 export const createTask = async (title) => {
-    const fd = new FormData();
-    fd.append("title", title);
     try {
         const res = await fetch("http://localhost:8080/task/create", {
             method: "POST",
-            body: fd,
-            credentials: "include",
+            headers: getHeaders(),
+            body: JSON.stringify({
+                title: title,
+            }),
         });
         return res;
     } catch (e) {
@@ -25,18 +27,18 @@ export const createTask = async (title) => {
 };
 
 export const updateTask = async (id, title, status) => {
-    const fd = new FormData();
+    let body = {};
     if (title) {
-        fd.append("title", title);
+        body.title = title;
     }
     if (status) {
-        fd.append("status", status);
+        body.status = status;
     }
     try {
         const res = await fetch(`http://localhost:8080/task/${id}`, {
             method: "PUT",
-            body: fd,
-            credentials: "include",
+            headers: getHeaders(),
+            body: JSON.stringify(body),
         });
         return res;
     } catch (e) {
@@ -49,7 +51,7 @@ export const deleteTask = async (id) => {
     try {
         const res = await fetch(`http://localhost:8080/task/${id}`, {
             method: "DELETE",
-            credentials: "include",
+            headers: getHeaders(),
         });
         return res;
     } catch (e) {

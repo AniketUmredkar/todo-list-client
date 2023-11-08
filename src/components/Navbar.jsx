@@ -1,19 +1,11 @@
 import React from "react";
-import { logOutUser } from "../apiHelpers/auth";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
     const navigate = useNavigate();
     const logOutHandler = () => {
-        logOutUser()
-            .then((res) => {
-                if (res.status === 200) {
-                    navigate("/login");
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        window.localStorage.removeItem("token");
+        navigate("/login");
     };
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">

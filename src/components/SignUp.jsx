@@ -31,13 +31,25 @@ const SignUp = (props) => {
         setLastName(e.target.value);
     };
 
+    const redirectToLogin = () => {
+        navigate("/login");
+    };
+
     const submitHandler = (e) => {
         e.preventDefault();
         createUser(firstName, lastName, email, password, confirmPassword).then((res) => {
             if (res) {
                 if (res.status === 200) {
-                    console.log("Sign up successfull");
-                    navigate("/");
+                    res.json()
+                        .then((parsedData) => {
+                            console.log(parsedData.message);
+                            props.setToastMessage(parsedData.message);
+                            props.showToast();
+                            setTimeout(redirectToLogin, 3000);
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
                 } else {
                     res.json()
                         .then((parsedData) => {

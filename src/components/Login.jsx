@@ -22,7 +22,14 @@ const Login = (props) => {
             if (res) {
                 if (res.status === 200) {
                     console.log("Login successfull");
-                    navigate("/");
+                    res.json()
+                        .then((parsedData) => {
+                            window.localStorage.setItem("token", parsedData.token);
+                            navigate("/");
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
                 } else {
                     res.json()
                         .then((parsedData) => {
