@@ -4,9 +4,6 @@ sudo yum install git
 sudo npm install -g pm2
 sudo npm install -g serve
 
-sudo mkdir workspace
-cd workspace
-
 directory="todo-list-client"
 repository_url="https://github.com/AniketUmredkar/todo-list-client.git"
 
@@ -22,10 +19,10 @@ fi
 
 cd $directory
 
-git checkout master
-git pull
+sudo git checkout master
+sudo git pull
 
-npm install
-npm run build
+sudo npm install
+sudo npm run build
 
 NODE_ENV=production pm2 serve build 80 --spa
