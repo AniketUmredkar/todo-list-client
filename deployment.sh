@@ -25,4 +25,7 @@ sudo git pull
 sudo npm install
 sudo npm run build
 
-NODE_ENV=production pm2 serve build 80 --spa
+pm2 stop all
+pm2 delete all
+
+NODE_ENV=production pm2 serve build 3000 --spa
