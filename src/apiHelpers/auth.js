@@ -2,7 +2,7 @@ import { getAuthHeaders } from "../utils/helpers";
 
 export const loginUser = async (email, password) => {
     try {
-        return await fetch("http://localhost:8080/auth/login", {
+        return await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/login`, {
             method: "POST",
             headers: getAuthHeaders(),
             body: JSON.stringify({
@@ -18,7 +18,7 @@ export const loginUser = async (email, password) => {
 
 export const createUser = async (firstName, lastName, email, password, confirmPassword) => {
     try {
-        return await fetch("http://localhost:8080/auth/sign-up", {
+        return await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/sign-up`, {
             method: "POST",
             headers: getAuthHeaders(),
             body: JSON.stringify({
@@ -37,7 +37,7 @@ export const createUser = async (firstName, lastName, email, password, confirmPa
 
 export const forgotPassword = async (email) => {
     try {
-        return await fetch("http://localhost:8080/auth/forgot-password", {
+        return await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/forgot-password`, {
             method: "POST",
             headers: getAuthHeaders(),
             body: JSON.stringify({
@@ -52,7 +52,7 @@ export const forgotPassword = async (email) => {
 
 export const resetPassword = async (password, confirmPassword, resetToken) => {
     try {
-        return await fetch("http://localhost:8080/auth/reset-password", {
+        return await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/reset-password`, {
             method: "POST",
             headers: getAuthHeaders(),
             body: JSON.stringify({

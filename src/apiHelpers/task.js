@@ -2,7 +2,7 @@ import { getHeaders } from "../utils/helpers";
 
 export const getAllTasks = async () => {
     try {
-        const res = await fetch("http://localhost:8080/task", { headers: getHeaders() });
+        const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/task`, { headers: getHeaders() });
         return res;
     } catch (e) {
         console.log(e);
@@ -12,7 +12,7 @@ export const getAllTasks = async () => {
 
 export const createTask = async (title) => {
     try {
-        const res = await fetch("http://localhost:8080/task/create", {
+        const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/task/create`, {
             method: "POST",
             headers: getHeaders(),
             body: JSON.stringify({
@@ -35,7 +35,7 @@ export const updateTask = async (id, title, status) => {
         body.status = status;
     }
     try {
-        const res = await fetch(`http://localhost:8080/task/${id}`, {
+        const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/task/${id}`, {
             method: "PUT",
             headers: getHeaders(),
             body: JSON.stringify(body),
@@ -49,7 +49,7 @@ export const updateTask = async (id, title, status) => {
 
 export const deleteTask = async (id) => {
     try {
-        const res = await fetch(`http://localhost:8080/task/${id}`, {
+        const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/task/${id}`, {
             method: "DELETE",
             headers: getHeaders(),
         });
