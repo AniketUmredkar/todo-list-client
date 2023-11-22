@@ -1,4 +1,4 @@
-import { getAuthHeaders } from "../utils/helpers";
+import { getAuthHeaders, getHeaders } from "../utils/helpers";
 
 export const loginUser = async (email, password) => {
     try {
@@ -60,6 +60,18 @@ export const resetPassword = async (password, confirmPassword, resetToken) => {
                 confirm_password: confirmPassword,
                 reset_token: resetToken,
             }),
+        });
+    } catch (e) {
+        console.log(e);
+        return false;
+    }
+};
+
+export const getUserData = async () => {
+    try {
+        return await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth`, {
+            method: "GET",
+            headers: getHeaders(),
         });
     } catch (e) {
         console.log(e);
